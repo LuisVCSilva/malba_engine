@@ -1,0 +1,50 @@
+
+from flask import Flask, render_template, request, session, url_for, make_response, redirect
+
+from flask_sqlalchemy import SQLAlchemy
+
+from core_app import *
+             
+from modules.integrate import integrate
+from modules.derivative import derivative
+from modules.taylor_series import taylor_series
+from modules.login import login
+from modules.about import about
+from modules.template import template
+from modules.solve import solve
+from modules.signup import signup
+from modules.credits import credits
+from modules.clear import clear
+from modules.critical_points import critical_points
+from modules.logout import logout
+
+app = Flask(__name__,template_folder="templates",static_folder="static")
+
+app.register_blueprint(core_app)
+              
+app.register_blueprint(integrate)
+app.register_blueprint(derivative)
+app.register_blueprint(taylor_series)
+app.register_blueprint(login)
+app.register_blueprint(about)
+app.register_blueprint(template)
+app.register_blueprint(solve)
+app.register_blueprint(signup)
+app.register_blueprint(credits)
+app.register_blueprint(clear)
+app.register_blueprint(critical_points)
+app.register_blueprint(logout)
+
+if __name__ == '__main__':
+   app.secret_key = "123"
+   app.run(host='localhost', port=8080, debug=True)
+   app.config['SESSION_TYPE'] = 'filesystem'
+   app.config['SECRET_KEY'] = 'secret-key-goes-here'
+   app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+   session.init_app(app)
+   #db.create_all(app=app)
+   #db.init_app(app)
+   #db.create_all()
+   #app.config.from_pyfile('settings.py')    
+   app.debug = True                  
+                   
