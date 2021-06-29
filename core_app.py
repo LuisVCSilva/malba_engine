@@ -1,5 +1,6 @@
 #from flask_app import app
 from flask import Blueprint, make_response, render_template, session, request, url_for
+from time import sleep
 import os
 import uuid
 from urllib.parse import quote
@@ -33,6 +34,7 @@ def routes():
     return rules
 
 def doComputation(_input):
+   sleep(1)
    output = {}
    try:
       target_resource = "http://localhost:8080"+url_for(_input["text"].split()[0]+".run")

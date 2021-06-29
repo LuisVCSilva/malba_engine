@@ -12,8 +12,8 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
     cmdLine.focus();
   }, false);
 
-  //cmdLine.addEventListener('click', inputTextClick, false);
-  //cmdLine.addEventListener('keydown', historyHandler, false);
+  cmdLine.addEventListener('click', inputTextClick, false);
+  cmdLine.addEventListener('keydown', historyHandler, false);
   cmdLine.addEventListener('keydown', processNewCommand, false);
 
   // Helper functions
@@ -120,7 +120,7 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
    requestHandler = $.ajax({
       url: _url,
       beforeSend: function () { 
-         //ShowLoadingScreen(); 
+         ShowLoadingScreen(); 
       }, // <Show OverLay      
       type: 'GET',
       dataType: 'json',
@@ -146,7 +146,7 @@ var Terminal = Terminal || function(cmdLineContainer, outputContainer) {
             requestitoHandlino = $.ajax({
                url: response["url"],
                beforeSend: function () { 
-                  //ShowLoadingScreen(); 
+                  ShowLoadingScreen(); 
                }, // <Show OverLay      
                type: 'GET',
                dataType: 'json',
