@@ -20,6 +20,7 @@ from modules.signup import signup
 from modules.credits import credits
 from modules.clear import clear
 from modules.critical_points import critical_points
+from modules.is_odd import is_odd
 from modules.logout import logout
 
 app = Flask(__name__,template_folder="templates",static_folder="static")
@@ -40,6 +41,7 @@ app.register_blueprint(signup)
 app.register_blueprint(credits)
 app.register_blueprint(clear)
 app.register_blueprint(critical_points)
+app.register_blueprint(is_odd)
 app.register_blueprint(logout)
 
 if __name__ == '__main__':

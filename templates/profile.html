@@ -1,59 +1,7 @@
-{% extends 'base.html' %} 
-{% block head %} 
-  <script defer src="{{ url_for('static', filename='js/comment.js') }}"></script>
-  <title>Friends - Profile</title>
-{% endblock %} 
-{% block content %} 
-  <span>
-    {% if is_wall_of_current_user %}
-      <h3 align="center" class="mt-5 mb-5">
-        <img style="width:50px;" src="{{ url_for('views.get_image', filename=user.pic_id) }}" alt="Profile Picture">
-        {{user.screen_name}}'s Profile 
-        <a href="/profile/settings">Settings</a>
-      </h3>
-    {% else %}
-      <h3 align="center" class="mt-5 mb-5">
-        <img src="{{ url_for('views.get_image', filename=user.pic_id) }}" alt="Profile Picture" style="width:50px;">
-        {{user.screen_name}}'s Profile
-      </h3>
-    {% endif %}
-  </span>
-  {% if current_user.is_authenticated %}
-    <form method="POST">
-      {% if is_wall_of_current_user %}
-        <textarea style="resize:none;" class="form-control" name="post-content" cols="10" rows="5" placeholder="Share what's new..."></textarea>
-      {% else %} 
-        <textarea style="resize:none;" class="form-control" name="post-content" cols="10" rows="5" placeholder="Write to {{user.screen_name}}'s wall..."></textarea>
-      {% endif %}
-      <button class="btn btn-primary mt-2" type="submit">Post</button>
-    </form>
-  {% endif %}
-  {% if posts %} 
-    <div class="mt-3 pb-5" style="display: flex; flex-direction: column-reverse;">
-      {% for post in posts %}
-        <div class="media">
-          <small>{{post.date_posted.strftime('%I:%M %p %A, %B %d, %Y')}}</small>
-          <div class="media-body">
-            <h5 class="mt-0">
-              <img class="mr-3" src="{{ url_for('views.get_image', filename=get_author(post.author_id).pic_id) }}" style="width:25px;" alt="Profile Picture">
-              <a href="/profile/{{post.author_id}}">{{get_author(post.author_id).screen_name}}</a>
-            </h5>
-            {{post.content}}
-          </div>
-          {% if current_user.is_authenticated %}
-            <input class="form-control" type="text" id="comment-box" placeholder="Add a comment...">
-            <button class="btn btn-secondary" type="button" 
-            onClick="postComment({{ wall.id }}, {{ post.id }}, {{ current_user.id }})"
-            >Comment</button>
-          {% endif %}
-          {% for comment in post.comments %} 
-            <h4 style="color: lightgreen">{{comment.content}}</h4>
-          {% endfor %}
-        </div>
-        <hr>
-      {% endfor %}
-    </div>
-  {% else %}
-    <div>User has no posts!</div>
-  {% endif %}
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+  Welcome, Anthony!
+</h1>
 {% endblock %}
