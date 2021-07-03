@@ -29,7 +29,7 @@ class Is_odd:
             if attr!=question_query.odd(x):
                if ask(question_query.odd(func),attr)==True:             
                   result.append("$$" + latex(func) + "\\text{ is odd given that x is " + str(attr).replace("Q.","")[:-3] + "}$$")
-         result = result if result!=[] else ["$$" + latex(str(func)) + " \\text{ is not odd}$$"]
+         result = result if result!=[] else ["$$\\text{It's not possible to say that }" + latex(func) + " \\text{is odd or not}$$"]
       return result
 
    is_odd_method = {'function_name':show_is_odd,'keywords':['is_odd']}
