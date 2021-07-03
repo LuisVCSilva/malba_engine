@@ -37,4 +37,5 @@ class Is_odd:
 @is_odd.route('/apps/is_odd',methods=["GET"])
 def run():
    expression = request.args["input"]
+   givens = expression.split("if")[1:].split("and")
    return json.dumps({"list":(Is_odd.show_is_odd(expression))})#Is_odd.show_is_odd(expression)   
