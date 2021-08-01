@@ -17,10 +17,13 @@ class Eigenvalue:
       output = latex(expression.eigenvals())
       return output
 
+   @eigenvalue.route('/apps/eigenvalue',methods=["GET"])
+   def run():
+      expression = request.args["input"]
+      return json.dumps({"text":"$$" + Eigenvalue.show_eigenvalue(expression) + "$$"})   
+
+   @eigenvalue.route('/apps/eigenvalue/help',methods=["GET"])
+   def help():
+      return json.dumps({"text":"eigenvalue help page"}) 
 
    eigenvalue_method = {'function_name':show_eigenvalue,'keywords':['eigenvalue']}
-      
-@eigenvalue.route('/apps/eigenvalue',methods=["GET"])
-def run():
-   expression = request.args["input"]
-   return json.dumps({"text":"$$" + Eigenvalue.show_eigenvalue(expression) + "$$"})   

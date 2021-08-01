@@ -15,8 +15,12 @@ class Integrate:
    def show_integrate(eq,show_steps):
       return print_html_steps(eq,x) if show_steps==True else latex(compute_integral(eq))      
 
-   integrate_method = {'function_name':show_integrate,'keywords':['integrate']}
+   @integrate.route('/apps/integrate',methods=["GET"])
+   def run():
+      return json.dumps({"result":"$$"+Integrate.show_integrate(request.args["input"].replace("steps",""),"steps" in request.args["input"]) + "$$"})
 
-@integrate.route('/apps/integrate',methods=["GET"])
-def run():
-   return json.dumps({"result":"$$"+Integrate.show_integrate(request.args["input"].replace("steps",""),"steps" in request.args["input"]) + "$$"})
+   @integrate.route('/apps/integrate/help',methods=["GET"])
+   def help():
+      return json.dumps({"text":"integrate help page"})   
+
+   integrate_method = {'function_name':show_integrate,'keywords':['integrate']}

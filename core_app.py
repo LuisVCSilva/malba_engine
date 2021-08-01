@@ -64,6 +64,9 @@ def dumpComputation(_meta,_input,_output):
     with open(jsonpath, 'a' if os.path.exists(jsonpath) else 'w', encoding='utf-8') as file:
        file.write(json.dumps({'meta':_meta,"input":_input,"output":_output})+"\n")
    
+@core_app.route('/login/',methods = ['GET','POST'])
+def login():
+   return make_response(render_template('login.html'))
 
 @core_app.route('/setcookie', methods = ['POST', 'GET'])
 def setcookie():

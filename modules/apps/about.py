@@ -10,11 +10,13 @@ class About:
    @staticmethod
    def show_about(func):
       return self.text 
-
-   about_method = {'function_name':show_about,'keywords':['who','about','who made this','what is this']}      
-
-@about.route('/apps/about',methods=["GET"])
-def run():
-   return json.dumps({"text":"An app made by LuisVCSilva"})
    
-   
+   @about.route('/apps/about',methods=["GET"])
+   def run():
+      return json.dumps({"text":"An app made by LuisVCSilva"})
+
+   @about.route('/apps/about/help',methods=["GET"])
+   def help():
+      return json.dumps({"text":"about help page"})   
+      
+   about_method = {'function_name':show_about,'keywords':['who','about','who made this','what is this']}

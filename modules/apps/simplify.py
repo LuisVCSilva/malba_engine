@@ -16,9 +16,13 @@ class Simplify:
       func = sympify(func)
       return latex(sympy_simplify(func))
 
+   @simplify.route('/apps/simplify',methods=["GET"])
+   def run():
+      expression = request.args["input"]
+      return json.dumps({"text":"$$" + Simplify.show_simplify(expression) + "$$"})#Simplify.show_simplify(expression)   
+
+   @simplify.route('/apps/simplify/help',methods=["GET"])
+   def help():
+      return json.dumps({"text":"simplify help page"})       
+
    simplify_method = {'function_name':show_simplify,'keywords':['simplify']}
-      
-@simplify.route('/apps/simplify',methods=["GET"])
-def run():
-   expression = request.args["input"]
-   return json.dumps({"text":"$$" + Simplify.show_simplify(expression) + "$$"})#Simplify.show_simplify(expression)   

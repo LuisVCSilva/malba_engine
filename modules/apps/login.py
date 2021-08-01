@@ -11,10 +11,12 @@ class Login:
    def show_login(func):
       return self.text 
 
-   login_method = {'function_name':show_login,'keywords':['login']}
+   @login.route('/apps/login',methods=["GET"])
+   def run():
+      return json.dumps({"text":"login page"})
 
-@login.route('/apps/login',methods=["GET"])
-def run():
-   return json.dumps({"text":"login page"})
-   
-   
+   @login.route('/apps/login/help',methods=["GET"])
+   def help():
+      return json.dumps({"text":"login help page"})    
+
+   login_method = {'function_name':show_login,'keywords':['login']}

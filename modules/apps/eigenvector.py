@@ -15,9 +15,13 @@ class Eigenvector:
       output = Matrix(sympify(func)).eigenvects()
       return "\n".join([latex(a[2]) for a in output])
 
+   @eigenvector.route('/apps/eigenvector',methods=["GET"])
+   def run():
+      expression = request.args["input"]
+      return json.dumps({"text":"$$" + Eigenvector.show_eigenvector(expression) + "$$"})   
+
+   @eigenvector.route('/apps/eigenvector/help',methods=["GET"])
+   def help():
+      return json.dumps({"text":"eigenvector help page"})     
+
    eigenvector_method = {'function_name':show_eigenvector,'keywords':['eigenvector']}
-      
-@eigenvector.route('/apps/eigenvector',methods=["GET"])
-def run():
-   expression = request.args["input"]
-   return json.dumps({"text":"$$" + Eigenvector.show_eigenvector(expression) + "$$"})   

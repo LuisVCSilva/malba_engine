@@ -2,26 +2,27 @@
 
 from flask import Flask, render_template, request, session, url_for, make_response, redirect
 
-from flask_sqlalchemy import SQLAlchemy
+#from flask_sqlalchemy import SQLAlchemy
 
 from core_app import *
              
-from modules.integrate import integrate
-from modules.derivative import derivative
-from modules.taylor_series import taylor_series
-from modules.eigenvector import eigenvector
-from modules.login import login
-from modules.simplify import simplify
-from modules.about import about
-from modules.template import template
-from modules.solve import solve
-from modules.eigenvalue import eigenvalue
-from modules.signup import signup
-from modules.credits import credits
-from modules.clear import clear
-from modules.critical_points import critical_points
-from modules.is_odd import is_odd
-from modules.logout import logout
+from modules.apps.integrate import integrate
+from modules.apps.derivative import derivative
+from modules.apps.taylor_series import taylor_series
+from modules.apps.eigenvector import eigenvector
+from modules.apps.login import login
+from modules.apps.simplify import simplify
+from modules.apps.about import about
+from modules.apps.template import template
+from modules.apps.solve import solve
+from modules.apps.eigenvalue import eigenvalue
+from modules.apps.signup import signup
+from modules.apps.credits import credits
+from modules.apps.clear import clear
+from modules.apps.critical_points import critical_points
+from modules.apps.is_odd import is_odd
+from modules.apps.logout import logout
+from modules.equations.kinematics_equation import kinematics_equation
 
 app = Flask(__name__,template_folder="templates",static_folder="static")
 
@@ -43,6 +44,7 @@ app.register_blueprint(clear)
 app.register_blueprint(critical_points)
 app.register_blueprint(is_odd)
 app.register_blueprint(logout)
+app.register_blueprint(kinematics_equation)
 
 if __name__ == '__main__':
    app.secret_key = "123"

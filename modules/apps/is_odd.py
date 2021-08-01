@@ -12,9 +12,7 @@ class Is_odd:
    def __init__ (self):
       self.functions = [show_is_odd]
       self.text = ""
-
-   
-      
+  
    @staticmethod
    def show_is_odd(func):
       func = sympify(func)
@@ -32,10 +30,16 @@ class Is_odd:
          result = result if result!=[] else ["$$\\text{It's not possible to say that }" + latex(func) + " \\text{is odd or not}$$"]
       return result
 
+   @is_odd.route('/apps/is_odd',methods=["GET"])
+   def run():
+      expression = request.args["input"]
+      givens = expression.split("if")[1:].split("and")
+      return json.dumps({"list":(Is_odd.show_is_odd(expression))})#Is_odd.show_is_odd(expression)   
+
+   @is_odd.route('/apps/is_odd/help',methods=["GET"])
+   def help():
+      return json.dumps({"text":"is odd help page"}) 
+
    is_odd_method = {'function_name':show_is_odd,'keywords':['is_odd']}
       
-@is_odd.route('/apps/is_odd',methods=["GET"])
-def run():
-   expression = request.args["input"]
-   givens = expression.split("if")[1:].split("and")
-   return json.dumps({"list":(Is_odd.show_is_odd(expression))})#Is_odd.show_is_odd(expression)   
+

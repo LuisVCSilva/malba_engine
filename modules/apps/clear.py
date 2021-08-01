@@ -11,10 +11,16 @@ class Clear:
    def show_clear(func):
       return self.text 
 
+   @clear.route('/apps/clear',methods=["GET"])
+   def run():
+      return json.dumps({"text":"clear page"})
+
+   @clear.route('/apps/template/clear',methods=["GET"])
+   def help():
+      return json.dumps({"text":"clear help page"})      
+
    clear_method = {'function_name':show_clear,'keywords':['clear']}
       
-@clear.route('/apps/clear',methods=["GET"])
-def run():
-   return json.dumps({"text":"clear page"})
+
    
    

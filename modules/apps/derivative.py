@@ -15,12 +15,12 @@ class Derivative:
    def show_derivative(eq,show_steps):
       return print_html_steps(eq,x) if show_steps==True else latex(compute_derivative(eq).doit())
 
+   @derivative.route('/apps/derivative',methods=["GET"])
+   def run():
+      return json.dumps({"result":"$$"+Derivative.show_derivative(request.args["input"].replace("steps",""),"steps" in request.args["input"])+"$$"})
 
-   derivative_method = {'function_name':show_derivative,'keywords':['derivative']}
+   @derivative.route('/apps/derivative/help',methods=["GET"])
+   def help():
+      return json.dumps({"text":"derivative help page"})     
       
-
-@derivative.route('/apps/derivative',methods=["GET"])
-def run():
-   return json.dumps({"result":"$$"+Derivative.show_derivative(request.args["input"].replace("steps",""),"steps" in request.args["input"])+"$$"})
-   
-
+   derivative_method = {'function_name':show_derivative,'keywords':['derivative']}
