@@ -1,4 +1,4 @@
-Cython==0.29.13
+Cython==0.29.14
 Flask==0.12.2
 Flask-Bootstrap==3.3.7.1
 Flask-DebugToolbar==0.11.0
